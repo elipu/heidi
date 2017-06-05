@@ -1,4 +1,4 @@
-import Logickit
+import LogicKit
 
 // ==========================================================================================================
 // §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ Abstract Syntax §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
@@ -17,14 +17,15 @@ import Logickit
 
 */
 // Commands:
-let davent = value("davent")
-let davos = value("davos")
-let deponer = value("deponer")
-let dretg = value("dretg")
-let plaun = value("plaun")
-let returnar = value("returnar")
-let sanester =value("sanester")
-let saFermar = value("sa fermar")
+let davent    = Value("davent")
+let davos     = Value("davos")
+let deponer   = Value("deponer")
+let dretg     = Value("dretg")
+let plaun     = Value("plaun")
+let returnar  = Value("returnar")
+let sanester  = Value("sanester")
+let saFermar  = Value("sa fermar")
+
 // ====================== Abstract syntax: From Tita ===========================
 /*
   Whistles = {short,long,pause,hee,who,wheeo,whee,wheet}
@@ -45,14 +46,14 @@ let saFermar = value("sa fermar")
 
 */
 // Whistles:
-let short = value("short")
-let long = value("long")
-let pause = value("pause")         // a pause is just a silent whistle ¯\_(ツ)_/¯
-let hee = value("hee")
-let who = value("who")
-let wheeo = value("wheeo")
-let whee = value("whee")
-let wheet = value("wheet")
+let short   = Value("short")
+let long    = Value("long")
+let pause   = Value("pause")         // a pause is just a silent whistle ¯\_(ツ)_/¯
+let hee     = Value("hee")
+let who     = Value("who")
+let wheeo   = Value("wheeo")
+let whee    = Value("whee")
+let wheet   = Value("wheet")
 
 // §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
 
@@ -96,60 +97,60 @@ let wheet = value("wheet")
               saFermar ---HtoT---> long
 */
 
-func HT_Davent(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Davent(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === davos
+  return Command_input === davos
             &&
-         Whistle === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(wheet, List.cons(pause, [])))))
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(wheet, List.cons(pause, other)))))
 }
 
-func HT_Davos(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Davos(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === davos
+  return Command_input === davos
             &&
-         Whistle === List.cons(who, List.cons(hee, List.cons(who, List.cons(pause, []))))
+         Whistle_output === List.cons(who, List.cons(hee, List.cons(who, List.cons(pause, other))))
 }
 
-func HT_Deponer(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Deponer(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === deponer
+  return Command_input === deponer
             &&
-         Whistle === List.cons(short, List.cons(short, List.cons(pause, [])))
+         Whistle_output === List.cons(short, List.cons(short, List.cons(pause, other)))
 }
 
-func HT_Dretg(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Dretg(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === dretg
+  return Command_input === dretg
             &&
-         Whistle === List.cons(whee, List.cons(who, List.cons(pause, [])))
+         Whistle_output === List.cons(whee, List.cons(who, List.cons(pause, other)))
 }
 
-func HT_Plaun(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Plaun(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === plaun
+  return Command_input === plaun
             &&
-         Whistle === List.cons(hee, List.cons(hee, List.cons(hee, List.cons(hee, List.cons(pause, [])))))
+         Whistle_output === List.cons(hee, List.cons(hee, List.cons(hee, List.cons(hee, List.cons(pause, other)))))
 }
 
-func HT_Returnar(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Returnar(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === returnar
+  return Command_input === returnar
             &&
-         Whistle === List.cons(whee, List.cons(whee, List.cons(wheet, List.cons(pause, []))))
+         Whistle_output === List.cons(whee, List.cons(whee, List.cons(wheet, List.cons(pause, other))))
 }
 
-func HT_Sanester(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_Sanester(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === sanester
+  return Command_input === sanester
             &&
-         Whistle === List.cons(wheet, List.cons(wheeo, List.cons(pause, [])))
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(pause, other)))
 }
 
-func HT_SaFermar(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
+func HT_SaFermar(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
-  return Command === saFermar
+  return Command_input === saFermar
             &&
-         Whistle === List.cons(long, List.cons(pause, []))
+         Whistle_output === List.cons(long, List.cons(pause, other))
 }
 
 // ===================== Semantics: Tita to Heidi ===========================
@@ -189,31 +190,118 @@ func HT_SaFermar(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
               long ---TtoH---> saFermar
 */
 
+func TH_Davent(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(wheet, List.cons(pause, other)))))
+            &&
+         Command_output === davos
+}
+
+func TH_Davos(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(who, List.cons(hee, List.cons(who, List.cons(pause, other))))
+            &&
+         Command_output === davos
+}
+
+func TH_Deponer(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return  Whistle_input === List.cons(short, List.cons(short, List.cons(pause, other)))
+            &&
+          Command_output === deponer
+}
+
+func TH_Dretg(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(whee, List.cons(who, List.cons(pause, other)))
+            &&
+         Command_output === dretg
+}
+
+func TH_Plaun(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(hee, List.cons(hee, List.cons(hee, List.cons(hee, List.cons(pause, other)))))
+            &&
+         Command_output === plaun
+}
+
+func TH_Returnar(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(whee, List.cons(whee, List.cons(wheet, List.cons(pause, other))))
+            &&
+         Command_output === returnar
+}
+
+func TH_Sanester(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(pause, other)))
+            &&
+         Command_output === sanester
+}
+
+func TH_SaFermar(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(long, List.cons(pause, other))
+            &&
+         Command_output === saFermar
+}
+
 // =========================== Translator =====================================
 
-// func Translate_HT(_ Command: Term, _ Translation: Term){
-//
-//   return (Command === List.empty && Translation === List.empty) ||
-//
-//          freshn { l in let ch = l["ch"]
-//                        let ct = l["ct"]
-//                        let tt = l["tt"]
-//
-//                  (Command === List.cons(ch,ct)) &&
-//                  (
-//                    ch === davent && HT_Davent(ch,tt) ||
-//                    ch === davos && HT_Davos(ch,tt) ||
-//                    ch ===
-//                  )}
-// }
+func Translate_HT(_ Command: Term, _ Translation: Term) {
+
+  return (Command === List.empty && Translation === List.empty) ||
+
+         freshn { l in let ch = l["ch"]
+                       let ct = l["ct"]
+                       let tt = l["tt"]
+
+                 (Command === List.cons(ch,ct)) &&
+                 (
+                   ch === davent && HT_Davent(ch,Translation,tt) ||
+                   ch === davos && HT_Davos(ch,Translation,tt) ||
+                   ch === deponer && HT_Deponer(ch,Translation,tt) ||
+                   ch === dretg && HT_Dretg(ch,Translation,tt) ||
+                   ch === plaun && HT_Plaun(ch,Translation,tt) ||
+                   ch === returnar && HT_Returnar(ch,Translation,tt) ||
+                   ch === sanester && HT_Sanester(ch,Translation,tt) ||
+                   ch === saFermar && HT_SaFermar(ch,Translation,tt)
+                      &&
+                   delayed(Translate_HT(ch,Translation,tt))
+                 )}
+}
 
 
+func Translate_TH(_ Command: Term, _ Translation: Term) {
 
+  return (Command === List.empty && Translation === List.empty) ||
 
+         freshn { l in let ch = l["ch"]
+                       let ct = l["ct"]
+                       let tt = l["tt"]
 
+                 (Command === List.cons(ch,ct)) &&
+                 (
+                   ch === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(wheet, List.cons(pause, List.empty))))) && TH_Davent(ch,Translation,tt) ||
+                   ch === List.cons(who, List.cons(hee, List.cons(who, List.cons(pause, List.empty)))) && TH_Davos(ch,Translation,tt) ||
+                   ch === List.cons(short, List.cons(short, List.cons(pause, List.empty))) && TH_Deponer(ch,Translation,tt) ||
+                   ch === List.cons(whee, List.cons(who, List.cons(pause, List.empty))) && TH_Dretg(ch,Translation,tt) ||
+                   ch === List.cons(hee, List.cons(hee, List.cons(hee, List.cons(hee, List.cons(pause, List.empty))))) && TH_Plaun(ch,Translation,tt) ||
+                   ch === List.cons(whee, List.cons(whee, List.cons(wheet, List.cons(pause, List.empty)))) && TH_Returnar(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, List.cons(pause, List.empty))) && TH_Sanester(ch,Translation,tt) ||
+                   ch === List.cons(long, List.cons(pause, List.empty)) && TH_SaFermar(ch,Translation,tt)
+                   &&
+                   delayed(Translate_TH(ch,Translation,tt))
+                 )}
+}
 
+func Translate(_ Command: Term, _ Translation: Term) {
 
+  return Translate_HT(Command, Translation)
+                    ||
+         Translate_TH(Command, Translation)
 
+}
 
 // ##########################################################################################################
 // ##########################################################################################################
@@ -226,7 +314,6 @@ func HT_SaFermar(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
 
 // Same abstract syntaxes, except for the set Whistles:
 // Whistles = {hee,wheet,wheeo,pause}
-
 
 // ==========================================================================================================
 // §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ Semantics §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
@@ -268,11 +355,61 @@ func HT_SaFermar(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
               saFermar ---HtoT---> wheeo::wheeo
 */
 
+func HT_Davent_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
+  return Command_input === davos
+            &&
+         Whistle_output === List.cons(wheet, List.cons(hee, List.cons(wheet, List.cons(pause, other))))
+}
 
+func HT_Davos_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
+  return Command_input === davos
+            &&
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(pause, other))))
+}
 
+func HT_Deponer_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
 
+  return Command_input === deponer
+            &&
+         Whistle_output === List.cons(wheeo, List.cons(hee, List.cons(wheet, List.cons(pause, other))))
+}
+
+func HT_Dretg_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === dretg
+            &&
+         Whistle_output === List.cons(hee, List.cons(wheet, List.cons(pause, other)))
+}
+
+func HT_Plaun_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === plaun
+            &&
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(pause, other))))
+}
+
+func HT_Returnar_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === returnar
+            &&
+         Whistle_output === List.cons(wheeo, List.cons(wheet, List.cons(pause, other)))
+}
+
+func HT_Sanester_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === sanester
+            &&
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(pause, other)))
+}
+
+func HT_SaFermar_opt(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === saFermar
+            &&
+         Whistle_output === List.cons(wheeo, List.cons(wheeo, List.cons(pause, other)))
+}
 
 // ===================== Semantics: Tita to Heidi ===========================
 /*
@@ -309,4 +446,387 @@ func HT_SaFermar(_ Command_input: Term, _ Whistle_output: Term) -> Goal {
       wheeo::wheeo ϵ WhistleCommand , saFermar ϵ Commands
     -------------------------------------------------------
               wheeo::wheeo ---TtoH---> saFermar
+*/
+
+func TH_Davent_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(hee, List.cons(wheet, List.cons(pause, other))))
+            &&
+         Command_output === davos
+}
+
+func TH_Davos_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(pause, other))))
+            &&
+         Command_output === davos
+}
+
+func TH_Deponer_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return  Whistle_input === List.cons(wheeo, List.cons(hee, List.cons(wheet, List.cons(pause, other))))
+            &&
+          Command_output === deponer
+}
+
+func TH_Dretg_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(hee, List.cons(wheet, List.cons(pause, other)))
+            &&
+         Command_output === dretg
+}
+
+func TH_Plaun_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(pause, other))))
+            &&
+         Command_output === plaun
+}
+
+func TH_Returnar_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheeo, List.cons(wheet, List.cons(pause, other)))
+            &&
+         Command_output === returnar
+}
+
+func TH_Sanester_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(pause, other)))
+            &&
+         Command_output === sanester
+}
+
+func TH_SaFermar_opt(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheeo, List.cons(wheeo, List.cons(pause, other)))
+            &&
+         Command_output === saFermar
+}
+
+/*
+
+func Translate_HT_opt(_ Command: Term, _ Translation: Term) {
+
+  return (Command === List.empty && Translation === List.empty) ||
+
+         freshn { l in let ch = l["ch"]
+                       let ct = l["ct"]
+                       let tt = l["tt"]
+
+                 (Command === List.cons(ch,ct)) &&
+                 (
+                   ch === davent && HT_Davent_opt(ch,Translation,tt) ||
+                   ch === davos && HT_Davos_opt(ch,Translation,tt) ||
+                   ch === deponer && HT_Deponer_opt(ch,Translation,tt) ||
+                   ch === dretg && HT_Dretg_opt(ch,Translation,tt) ||
+                   ch === plaun && HT_Plaun_opt(ch,Translation,tt) ||
+                   ch === returnar && HT_Returnar_opt(ch,Translation,tt) ||
+                   ch === sanester && HT_Sanester_opt(ch,Translation,tt) ||
+                   ch === saFermar && HT_SaFermar_opt(ch,Translation,tt)
+                      &&
+                   delayed(Translate_HT_opt(ch,Translation,tt))
+                 )}
+}
+
+
+func Translate_TH_opt(_ Command: Term, _ Translation: Term) {
+
+  return (Command === List.empty && Translation === List.empty) ||
+
+         freshn { l in let ch = l["ch"]
+                       let ct = l["ct"]
+                       let tt = l["tt"]
+
+                 (Command === List.cons(ch,ct)) &&
+                 (
+                   ch === List.cons(wheet, List.cons(hee, List.cons(wheet, List.cons(pause, other)))) && TH_Davent_opt(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(pause, other)))) && TH_Davos_opt(ch,Translation,tt) ||
+                   ch === List.cons(wheeo, List.cons(hee, List.cons(wheet, List.cons(pause, other)))) && TH_Deponer_opt(ch,Translation,tt) ||
+                   ch === List.cons(hee, List.cons(wheet, List.cons(pause, other))) && TH_Dretg_opt(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, List.cons(wheet, List.cons(pause, other)))) && TH_Plaun_opt(ch,Translation,tt) ||
+                   ch === List.cons(wheeo, List.cons(wheet, List.cons(pause, other))) && TH_Returnar_opt(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, List.cons(pause, other))) && TH_Sanester_opt(ch,Translation,tt) ||
+                   ch === List.cons(wheeo, List.cons(wheeo, List.cons(pause, other))) && TH_SaFermar_opt(ch,Translation,tt)
+                   &&
+                   delayed(Translate_TH_opt(ch,Translation,tt))
+                 )}
+}
+
+func Translate_opt(_ Command: Term, _ Translation: Term) {
+
+  return Translate_HT_opt(Command, Translation)
+                    ||
+         Translate_TH_opt(Command, Translation)
+
+}
+
+*/
+
+/*
+// ##########################################################################################################
+// ##########################################################################################################
+// ################################################# Proof ##################################################
+// ##########################################################################################################
+// ##########################################################################################################
+---------------------------------
+--Prouvez que les ordres donnés en romanche par Heidi sont bien executés par Tita, c'est-à-dire que
+--la traduction romanche vers sifflets vers romanche retourne le programme d'origine.
+---------------------------------
+
+To prove that the translation romansh-whistle-romansh returns the source, we proceed by induction:
+
+  § 0 commands
+
+    source = [] ---HtoT---> whistle = [] ---TtoH---> romansh = []
+
+  § 1 command
+
+    source = [sanester] ---HtoT---> whistle = [wheet::wheeo] ---TtoH---> romansh = [sanester]
+
+    By replacing the source with any command we can prove that a sequence of 1 command will always be true without ambiguity.
+
+  Let's suppose that any sequence with (n-1) commands return true without any ambiguity, and let's prove for (n) commands:
+
+    The command sequence would look like, at the nth command: [((n-1)ProvenCommand::pause)::(nthCommand::pause)::(rest::pause)]
+
+    We can easily see that evaluating the nth command is like evalutating a single command which we proved just above.
+
+    So by the inductive hypothesis, the nth command will be true withouht ambihuity.
+
+    ((Every element of a sequence of Roamnsh commands is a single Romansh command, so they are clearly separated.
+      And, every command in a sequence of whistle commands are clearly separated by a pause.
+      Thus, commands in every language are separated without any ambiguity))
+*/
+/*
+// ##########################################################################################################
+// ##########################################################################################################
+// ############################################## Acceleration ##############################################
+// ##########################################################################################################
+// ##########################################################################################################
+---------------------------------
+--Au bout de quelques jours à diriger Tita, Heidi prend confiance et réduit de plus en plus les pauses
+--entre ses ordres. Arrive le moment où elle supprime totalement ces pauses.
+
+--Évaluez (romanche vers sifflets vers romanche) le programme suivant :
+
+--    plaun
+--    dretg
+--    plaun
+--    deponer
+--    sa fermar
+
+--Que remarquez-vous ?
+---------------------------------
+
+The code is below but there are no tests to execute the code, where the evalutation is accelerated which means that
+there are no pauses in between whistle commands.
+
+Executing
+  Translate_acc([plaun::dretg::plaun::deponer::saFermar], Translation)
+returns
+  Translation = [wheet::wheeo::wheeo::hee::wheet::wheet::wheeo::wheeo::wheeo::hee::wheet::wheeo::wheeo]
+
+But Translation can be re-translated in 4 different command sequences:
+  Executing
+    Translate_acc([wheet::wheeo::wheeo::hee::wheet::wheet::wheeo::wheeo::wheeo::hee::wheet::wheeo::wheeo], reTranslation)
+  returns
+    reTranslation = [plaun::dretg::sanester::saFermar::dretg::saFermar]
+      ||
+    reTranslation = [plaun::dretg::plaun::deponer::saFermar]
+      ||
+    reTranslation = [sanester::deponer::sanester::saFermar::dretg::saFermar]
+      ||
+    reTranslation = [sanester::deponer::plaun::deponer::saFermar]
+
+Among these 4 sequences only one of the reTranslation evaluations ties in with the original command sequence.
+
+*/
+
+/*
+----Heidi----
+func HT_Davent_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === davos
+            &&
+         Whistle_output === List.cons(wheet, List.cons(hee, List.cons(wheet, other)))
+}
+
+func HT_Davos_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === davos
+            &&
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(wheet, other)))
+}
+
+func HT_Deponer_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === deponer
+            &&
+         Whistle_output === List.cons(wheeo, List.cons(hee, List.cons(wheet, other)))
+}
+
+func HT_Dretg_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === dretg
+            &&
+         Whistle_output === List.cons(hee, List.cons(wheet, other))
+}
+
+func HT_Plaun_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === plaun
+            &&
+         Whistle_output === List.cons(wheet, List.cons(wheeo, List.cons(wheet, other)))
+}
+
+func HT_Returnar_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === returnar
+            &&
+         Whistle_output === List.cons(wheeo, List.cons(wheet, other))
+}
+
+func HT_Sanester_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === sanester
+            &&
+         Whistle_output === List.cons(wheet, List.cons(wheeo, other))
+}
+
+func HT_SaFermar_acc(_ Command_input: Term, _ Whistle_output: Term, _ other: Term) -> Goal {
+
+  return Command_input === saFermar
+            &&
+         Whistle_output === List.cons(wheeo, List.cons(wheeo, other))
+}
+
+------Tita------
+func TH_Davent_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(hee, List.cons(wheet, other)))
+            &&
+         Command_output === davos
+}
+
+func TH_Davos_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(wheet, other)))
+            &&
+         Command_output === davos
+}
+
+func TH_Deponer_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return  Whistle_input === List.cons(wheeo, List.cons(hee, List.cons(wheet, other)))
+            &&
+          Command_output === deponer
+}
+
+func TH_Dretg_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(hee, List.cons(wheet, other))
+            &&
+         Command_output === dretg
+}
+
+func TH_Plaun_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, List.cons(wheet, other)))
+            &&
+         Command_output === plaun
+}
+
+func TH_Returnar_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheeo, List.cons(wheet, other))
+            &&
+         Command_output === returnar
+}
+
+func TH_Sanester_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheet, List.cons(wheeo, other))
+            &&
+         Command_output === sanester
+}
+
+func TH_SaFermar_acc(_ Whistle_input: Term, _ Command_output: Term, _ other: Term) -> Goal {
+
+  return Whistle_input === List.cons(wheeo, List.cons(wheeo, other))
+            &&
+         Command_output === saFermar
+}
+
+
+func Translate_HT_acc(_ Command: Term, _ Translation: Term) {
+
+  return (Command === List.empty && Translation === List.empty) ||
+
+         freshn { l in let ch = l["ch"]
+                       let ct = l["ct"]
+                       let tt = l["tt"]
+
+                 (Command === List.cons(ch,ct)) &&
+                 (
+                   ch === davent && HT_Davent_acc(ch,Translation,tt) ||
+                   ch === davos && HT_Davos_acc(ch,Translation,tt) ||
+                   ch === deponer && HT_Deponer_acc(ch,Translation,tt) ||
+                   ch === dretg && HT_Dretg_acc(ch,Translation,tt) ||
+                   ch === plaun && HT_Plaun_acc(ch,Translation,tt) ||
+                   ch === returnar && HT_Returnar_acc(ch,Translation,tt) ||
+                   ch === sanester && HT_Sanester_acc(ch,Translation,tt) ||
+                   ch === saFermar && HT_SaFermar_acc(ch,Translation,tt)
+                      &&
+                   delayed(Translate_HT_acc(ch,Translation,tt))
+                 )}
+}
+
+
+func Translate_TH_acc(_ Command: Term, _ Translation: Term) {
+
+  return (Command === List.empty && Translation === List.empty) ||
+
+         freshn { l in let ch = l["ch"]
+                       let ct = l["ct"]
+                       let tt = l["tt"]
+
+                 (Command === List.cons(ch,ct)) &&
+                 (
+                   ch === List.cons(wheet, List.cons(hee, List.cons(wheet, other))) && TH_Davent_acc(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, ist.cons(wheet, other))) && TH_Davos_acc(ch,Translation,tt) ||
+                   ch === List.cons(wheeo, List.cons(hee, List.cons(wheet, other))) && TH_Deponer_acc(ch,Translation,tt) ||
+                   ch === List.cons(hee, List.cons(wheet, other)) && TH_Dretg_acc(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, List.cons(wheet, other))) && TH_Plaun_acc(ch,Translation,tt) ||
+                   ch === List.cons(wheeo, List.cons(wheet, other)) && TH_Returnar_acc(ch,Translation,tt) ||
+                   ch === List.cons(wheet, List.cons(wheeo, other)) && TH_Sanester_acc(ch,Translation,tt) ||
+                   ch === List.cons(wheeo, List.cons(wheeo, other)) && TH_SaFermar_acc(ch,Translation,tt)
+                   &&
+                   delayed(Translate_TH_acc(ch,Translation,tt))
+                 )}
+}
+
+func Translate_acc(_ Command: Term, _ Translation: Term) {
+
+  return Translate_HT_acc(Command, Translation)
+                    ||
+         Translate_TH_acc(Command, Translation)
+
+}
+*/
+
+/*
+// ##########################################################################################################
+// ##########################################################################################################
+// ################################################ Problems ################################################
+// ##########################################################################################################
+// ##########################################################################################################
+---------------------------------
+--Est-il possible d'obtenir la liste de tous les problèmes possibles ? Si non, pourquoi ?
+--Si oui, comment (et donnez alors le code le permettant) ?
+---------------------------------
+The more the command sequence have commands, the more there will be ambiguity.
+
+Thus, in my opinion, the possibility of getting a list of every possible problem decreases when the number of
+commands increases. And this can be proven by repeating, the sequence given above, multiple times.
 */
