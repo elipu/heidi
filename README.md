@@ -121,3 +121,18 @@ Est-il possible d'obtenir la liste de tous les problèmes possibles ?
 Si non, pourquoi ? Si oui, comment (et donnez alors le code le permettant) ?
 
 ![Heidi Movie](https://www.letemps.ch/sites/default/files/styles/lt_article_cover/public/media/2016/02/02/file6o9gy7gfina16ntcshsz.jpg?itok=GcUNmRYv)
+
+# Grade
+
+* Have you done something? yes
+* Does your code compile or run? no
+* Do your tests succeed? no
+* Have you defined tests? some
+* Have you done the proof? yes
+* Have you given all the problems? no
+* Have you written the semantics as inference rules? yes, but missing semantics for lists
+* Have you implemented the semantics? some, but does not compile
+
+| Grade |
+| ----- |
+|  4.5  |
